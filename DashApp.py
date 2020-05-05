@@ -43,19 +43,14 @@ app.layout = html.Div(children=[
         figure=fig
     ),
 
-    #dcc.Slider(
-    #    id='frame_selector',
-    #    min=0,
-    #    max=len(river_height_data) - 1,
-    #    step=1,
-    #    value=250,
-    #),
+    dcc.Slider(
+        id='frame_selector',
+        min=0,
+        max=len(river_height_data) - 1,
+        step=1,
+        value=250,
+    ),
 
-    dcc.Interval(
-            id='interval-component',
-            interval=1*1000, # in milliseconds
-            n_intervals=0
-        )
 ])
 
 camera = dict(
@@ -64,7 +59,7 @@ camera = dict(
 
 @app.callback(
     dash.dependencies.Output('river_graph', 'figure'),
-    [dash.dependencies.Input('interval-component', 'n_intervals')])
+    [dash.dependencies.Input('frame-selector', 'value')])
 def update_output(value):
     print(value)
     fig = go.Figure(data=[go.Surface(z=river_height_data[value],
