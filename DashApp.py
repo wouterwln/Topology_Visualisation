@@ -59,9 +59,8 @@ camera = dict(
 
 @app.callback(
     dash.dependencies.Output('river_graph', 'figure'),
-    [dash.dependencies.Input('frame-selector', 'value')])
+    [dash.dependencies.Input('frame_selector', 'value')])
 def update_output(value):
-    print(value)
     fig = go.Figure(data=[go.Surface(z=river_height_data[value],
                                      contours={
                                          "x": {"show": False},
